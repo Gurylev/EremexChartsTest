@@ -1,0 +1,37 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Neuroscope.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+		xmlns:ScottPlot="clr-namespace:ScottPlot.Avalonia;assembly=ScottPlot.Avalonia"
+        x:Class="Neuroscope.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+		 xmlns:mxc="https://schemas.eremexcontrols.net/avalonia/charts"
+        Title="Neuroscope">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+	<mxc:CartesianChart DataContext="{Binding CartesianVM}" SeriesSource="{Binding Series}" x:Name="DemoControl">
+		<mxc:CartesianChart.CrosshairOptions>
+			<mxc:CrosshairOptions ShowArgumentLabel="True" ShowValueLabel="True"/>
+		</mxc:CartesianChart.CrosshairOptions>
+		<mxc:CartesianChart.SeriesTemplate>
+			<DataTemplate x:DataType="vm:SeriesViewModel">
+				<mxc:CartesianSeries DataAdapter="{Binding DataAdapter}">
+					<mxc:CartesianLineSeriesView Color="{Binding Color}" />
+				</mxc:CartesianSeries>
+			</DataTemplate>
+		</mxc:CartesianChart.SeriesTemplate>
+
+		<mxc:CartesianChart.AxesX>
+			<mxc:AxisX Title="Time" EnableZooming="False" EnableScrolling="False" ShowInterlacing="False" ShowMajorGridlines="False" ShowMinorGridlines="False" />
+		</mxc:CartesianChart.AxesX>
+		<mxc:CartesianChart.AxesY>
+			<mxc:AxisY ShowTitle="False" EnableZooming="False" EnableScrolling="False" ShowInterlacing="False" ShowMinorGridlines="False" />
+		</mxc:CartesianChart.AxesY>
+	</mxc:CartesianChart>
+	<!--<ScottPlot:AvaPlot x:Name="wgtPlot"/>-->
+
+</Window>
